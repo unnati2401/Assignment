@@ -40,9 +40,25 @@ spec:
           name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: Unnati@2409
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-pass
+                  key: password
             - name: MYSQL_DATABASE
-              value: employee_management_system
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-db-url
+                  key: database
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-user-pass
+                  key: username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-user-pass
+                  key: password
           ports:
             - containerPort: 3306
               name: mysql
@@ -64,7 +80,10 @@ metadata:
     tier: database
 spec:
   ports:
-    - protocol: "TCP"
-      port: 3306
+    - port: 3306
       targetPort: 3306
-  type: ClusterIP
+  selector:       # mysql Pod Should contain same labels
+    app: mysql
+    tier: database
+  clusterIP: None
+
