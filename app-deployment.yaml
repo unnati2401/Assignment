@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: assignment-demo
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -16,7 +16,7 @@ spec:
       containers:
         - name: assignment
           image: unnati2409/assignment-repo:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
@@ -48,7 +48,8 @@ spec:
   selector:
     app: assignment-demo
   ports:
-    - protocol: "TCP"
+    - name: http
+      protocol: "TCP"
       port: 8080
       targetPort: 8080
   type: NodePort
