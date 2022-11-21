@@ -3,7 +3,8 @@ kind: Ingress
 metadata:
   name: ingress-assignment
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - host: employee-system.info
