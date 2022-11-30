@@ -1,0 +1,11 @@
+mySqlImageName: mysql:5.7
+
+ports:
+  containerPort: 3306
+  name: mysql
+
+data:
+  username: cm9vdA==
+  password: cm9vdA==
+
+app: mysql
