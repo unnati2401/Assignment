@@ -1,0 +1,32 @@
+mySqlImageName: mysql:5.7
+
+ports:
+  containerPort: 3306
+  targetPort: 3306
+  name: mysql
+
+data:
+  username: cm9vdA==
+  password: cm9vdA==
+  url: amRiYzpteXNxbDovL215c3FsOjMzMDYvZW1wbG95ZWVfbWFuYWdlbWVudF9zeXN0ZW0/dXNlU1NMPWZhbHNlJnNlcnZlclRpbWV6b25lPVVUQyZ1c2VMZWdhY3lEYXRldGltZUNvZGU9ZmFsc2U=
+
+app: mysql
+
+volumeClaimName: mysql-pv-claim
+
+volumeStorage: 1Gi
+
+volumeName: mysql-persistent-storage
+
+volumePath: /var/lib/mysql
+
+database:
+  urlName: MYSQL_DATABASE_URL
+  passwordName: MYSQL_ROOT_PASSWORD
+  databaseName: MYSQL_DATABASE
+
+secretName: secret
+
+configName: config
+
+host: mysql

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Values.configName}}
+data:
+  host: {{.Values.host}}
+  dbName: employee_management_system

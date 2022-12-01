@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.app}}
+  labels:
+    app: {{.Values.app}}
+    tier: database
+spec:
+  selector: # mysql Pod Should contain same labels
+    matchLabels:
+      app: {{.Values.app}}
+      tier: database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{.Values.app}}
+        tier: database
+    spec:
+      containers:
+        - image: {{.Values.mySqlImageName}}
+          args:
+            - "--ignore-db-dir=lost+found"
+          name: {{.Values.app}}
+          env:
+            - name: {{.Values.database.urlName}}
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.secretName}}
+                  key: url
+            - name: {{.Values.database.passwordName}}
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.secretName}}
+                  key: password
+            - name: {{.Values.database.databaseName}}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{.Values.configName}}
+                  key: dbName
+          ports:
+            - containerPort: {{.Values.ports.containerPort}}
+              name: {{.Values.ports.name}}
+          volumeMounts:
+            - name: {{.Values.volumeName}}
+              mountPath: {{.Values.volumePath}}
+      volumes:
+        - name: {{.Values.volumeName}}
+          persistentVolumeClaim:
+            claimName: {{.Values.volumeClaimName}}

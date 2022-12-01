@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.app}}
+  labels:
+    app: {{.Values.app}}
+    tier: database
+spec:
+  ports:
+    - port: {{.Values.ports.containerPort}}
+      targetPort: {{.Values.ports.targetPort}}
+  selector: # mysql Pod Should contain same labels
+    app: {{.Values.app}}
+    tier: database
+  clusterIP: None

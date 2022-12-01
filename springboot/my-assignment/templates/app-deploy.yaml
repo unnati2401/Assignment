@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: {{.Values.deploymentName}}
+spec:
+  selector:
+    matchLabels:
+      app: {{.Values.app}}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{.Values.app}}
+    spec:
+      containers:
+        - name: {{.Values.containerName}}
+          image: unnati2409/assignment-repo:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: {{.Values.containerPort}}
+          env:
+            - name: SPRING_DATASOURCE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{.Values.configName}}
+                  key: host
+            - name: SPRING_DATASOURCE_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{.Values.configName}}
+                  key: dbName
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.secretName}}
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.secretName}}
+                  key: password
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.secretName}}
+                  key: url

@@ -1,0 +1,17 @@
+secretName: qasecret
+
+configName: qaconfig
+
+serviceName: assignment-svc-qa
+
+containerPort: 8081
+
+deploymentName: assignment-deployment-qa
+
+containerName: assignment-qa
+
+app: assignment-demo-qa
+
+ingressHost: employee-system-qa.info
+
+ingressName: ingress-assignment-qa

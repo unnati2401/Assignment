@@ -1,0 +1,32 @@
+mySqlImageName: mysql:5.7
+
+ports:
+  containerPort: 3307
+  targetPort: 3307
+  name: qa-mysql
+
+data:
+  username: ZGVsZmk=
+  password: ZGVsZmk=
+  url: amRiYzpteXNxbDovL3FhLW15c3FsOjMzMDcvZW1wbG95ZWVfbWFuYWdlbWVudF9zeXN0ZW0/dXNlU1NMPWZhbHNlJnNlcnZlclRpbWV6b25lPVVUQyZ1c2VMZWdhY3lEYXRldGltZUNvZGU9ZmFsc2U=
+
+app: qa-mysql
+
+volumeClaimName: qa-mysql-pv-claim
+
+volumeStorage: 8Gi
+
+volumeName: qa-mysql-persistent-storage
+
+volumePath: /var/lib/qa-mysql
+
+database:
+  urlName: MYSQL_DATABASE_URL
+  passwordName: MYSQL_ROOT_PASSWORD
+  databaseName: MYSQL_DATABASE
+
+secretName: qasecret
+
+configName: qaconfig
+
+host: qa-mysql

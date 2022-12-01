@@ -1,0 +1,17 @@
+secretName: secret
+
+configName: config
+
+serviceName: assignment-svc
+
+containerPort: 8080
+
+deploymentName: assignment-deployment
+
+containerName: assignment
+
+app: assignment-demo
+
+ingressHost: employee-system.info
+
+ingressName: ingress-assignment
