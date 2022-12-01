@@ -1,5 +1,0 @@
-apiVersion: v2
-name: db-mysql
-description: A Helm chart for Kubernetes database
-type: application
-version: 3.2.1
